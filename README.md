@@ -1,9 +1,9 @@
-# Exynos 7420 patches for LineageOS 20.0
+# Exynos 5433 patches for LineageOS 20.0
 You must apply all of the patches in this repository in order for proper building and booting. 
 
 Only validated to work on LineageOS 20.0 (as of Jan 2024)
 
-Extract files to ~/7420_patches-lineage-20.0. Copy apply.sh to the root of your lineage 20 sources.
+Extract files to ~/5433_patches-lineage-20.0. Copy apply.sh to the root of your lineage 20 sources.
 
 Mark apply.sh as executable
 
