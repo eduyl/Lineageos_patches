@@ -67,6 +67,7 @@ git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0001-wifi-
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0002-wifi-fix-legacy-HIDL-for-T.patch
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0003-wifi-hidl_struct_util.cpp-convertLegacyWifiChannelWi.patch
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0004-wifi-wifi.h-fix-build-undef-NAN.patch
+git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/camera-fix-build-for-s.patch
 cd ../../../
 cd vendor/lineage
 echo "Applying patches to vendor/lineage"
