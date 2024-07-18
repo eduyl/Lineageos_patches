@@ -1,0 +1,22 @@
+commit 5160c895dd3035d2bbaa14e860f8f8b1983056ff
+Author: Dominggoes Isakh <drjisakh@gmail.com>
+Date:   Tue Nov 2 08:36:19 2021 +0100
+
+camera: Fix build for S
+
+Change-Id: I893c0871dfbb711b762878490ca8919b57bccea7
+
+Taken from LineageOS-UL
+  
+diff --git a/camera/device/1.0-legacy/CameraDevice.cpp b/camera/device/1.0-legacy/CameraDevice.cpp
+index f324e45..69ba2fa 100644
+--- a/camera/device/1.0-legacy/CameraDevice.cpp
++++ b/camera/device/1.0-legacy/CameraDevice.cpp
+@@ -15,6 +15,7 @@
+  */
+ 
+ #define LOG_TAG "CamDev@1.0-impl.legacy"
++#include <fcntl.h>
+ #include <hardware/camera.h>
+ #include <hardware/gralloc1.h>
+ #include <hidlmemory/mapping.h>
