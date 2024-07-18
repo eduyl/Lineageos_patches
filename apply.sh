@@ -45,7 +45,6 @@ git am --signoff < ~/patches-lineage-20.0/frameworks_base/0004-CachedAppOptimize
 cd ../../
 cd frameworks/opt/telephony
 echo "Applying patches to frameworks/opt/telephony"
-git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0001-2G-wants-proper-signal-strength-too.patch
 git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0002-Revert-[Telephony]-Remove-IOem-in-Telephony.patch
 git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0003-Revert-Remove-compat-version-of-ImsService-binding.patch
 git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0004-Ignore-PLMN-bit-when-SPN-is-required.patch
