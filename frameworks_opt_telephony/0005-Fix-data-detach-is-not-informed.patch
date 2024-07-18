@@ -1,0 +1,30 @@
+commit 696b0d552b5efad79f037b0577aeb525b230de84
+Author: Mengjun Leng <mengju@codeaurora.org>
+Date:   Thu Oct 21 16:08:01 2021 +0800
+
+    Fix data detach isn't informed
+    
+    When SIM is not powered, if toggling APM mode quickly, the stale state will
+    be skipped, leading missing PS detach notified.
+    
+    To fix it, makes poll done immediately when radio is off.
+    
+    Change-Id: I89b108e65117c46f79881f002d605b40b3c87c1e
+    CRs-Fixed: 3058266
+
+diff --git a/src/java/com/android/internal/telephony/ServiceStateTracker.java b/src/java/com/android/internal/telephony/ServiceStateTracker.java
+index 58b9650a32..c0baa7a9ac 100755
+--- a/src/java/com/android/internal/telephony/ServiceStateTracker.java
++++ b/src/java/com/android/internal/telephony/ServiceStateTracker.java
+@@ -1341,8 +1341,9 @@ public class ServiceStateTracker extends Handler {
+                     // properly into airplane mode.
+                     pollState();
+                 } else {
+-                    // These events are modem triggered, so pollState() needs to be forced
+-                    pollStateInternal(true);
++                    boolean forceTrigger =
++                        mCi.getRadioState() != TelephonyManager.RADIO_POWER_OFF;
++                    pollStateInternal(forceTrigger);
+                 }
+                 break;
+ 

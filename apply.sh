@@ -43,6 +43,17 @@ git am --signoff < ~/patches-lineage-20.0/frameworks_base/0002-Revert-CachedAppO
 git am --signoff < ~/patches-lineage-20.0/frameworks_base/0003-Revert-CachedAppOptimizer-don-t-hardcode-freezer-pat.patch
 git am --signoff < ~/patches-lineage-20.0/frameworks_base/0004-CachedAppOptimizer-revert-freezer-to-cgroups-v1.patch
 cd ../../
+cd frameworks/opt/telephony
+echo "Applying patches to frameworks/opt/telephony"
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0001-2G-wants-proper-signal-strength-too.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0002-Revert-[Telephony]-Remove-IOem-in-Telephony.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0003-Revert-Remove-compat-version-of-ImsService-binding.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0004-Ignore-PLMN-bit-when-SPN-is-required.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0005-Fix-data-detach-is-not-informed.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0006-Telephony-Add-option-for-using-regular-poll-state-for-airplane-mode.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0007-Avoid-SubscriptionManager#getUriForSubscriptionId.patch
+git am --signoff < ~/patches-lineage-20.0/frameworks_opt_telephony/0008-telephony-Squashed-support-for-simactivation-feature.patch
+cd ../../../
 cd art
 echo "Applying patches to art"
 git am --signoff < ~/patches-lineage-20.0/android_art/0001-art-Conditionally-remove-version-check-for-memfd_cre.patch

@@ -1,0 +1,52 @@
+commit 3b772376b6522a2febf7d15c84f7f814761d8ee9
+Author: Arne Coucheron <arco68@gmail.com>
+Date:   Mon Sep 19 06:53:52 2016 +0200
+
+    Telephony: Add option for using regular poll state for airplane mode
+    
+    The modemTriggeredPollState breaks airplane mode on some devices.
+    Although the UI shows that airplane mode is activated, the fact is that
+    the radio remains active and in service. By using regular pollState()
+    here, service state in sim status shows correctly radio off.
+    
+    Enable with setting prop:
+    ro.telephony.ril.config=legacypollstate
+    
+    Test: Insert SIM card. Put device into airplane mode. Go into
+    SIM Status and verify that it says "Radio off".
+    
+    Change-Id: If2ab5b088a13b1a159e01f82fbea1f58a77b64cd
+
+diff --git a/src/java/com/android/internal/telephony/ServiceStateTracker.java b/src/java/com/android/internal/telephony/ServiceStateTracker.java
+index 99695cb952..58b9650a32 100755
+--- a/src/java/com/android/internal/telephony/ServiceStateTracker.java
++++ b/src/java/com/android/internal/telephony/ServiceStateTracker.java
+@@ -1336,8 +1336,14 @@ public class ServiceStateTracker extends Handler {
+                 }
+                 // This will do nothing in the 'radio not available' case
+                 setPowerStateToDesired();
+-                // These events are modem triggered, so pollState() needs to be forced
+-                pollStateInternal(true);
++                if (needsLegacyPollState()) {
++                    // Some older radio blobs need this to put device
++                    // properly into airplane mode.
++                    pollState();
++                } else {
++                    // These events are modem triggered, so pollState() needs to be forced
++                    pollStateInternal(true);
++                }
+                 break;
+ 
+             case EVENT_NETWORK_STATE_CHANGED:
+@@ -6066,4 +6072,11 @@ public class ServiceStateTracker extends Handler {
+     public @Nullable CellIdentity getLastKnownCellIdentity() {
+         return mLastKnownCellIdentity;
+     }
++
++    private boolean needsLegacyPollState() {
++        if (mCi instanceof RIL) {
++            return ((RIL) mCi).needsOldRilFeature("legacypollstate");
++        }
++        return false;
++    }
+ }
