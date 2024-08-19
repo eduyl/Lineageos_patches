@@ -7,7 +7,11 @@ camera: Fix build for S
 Change-Id: I893c0871dfbb711b762878490ca8919b57bccea7
 
 Taken from LineageOS-UL
-  
+---
+ camera/device/1.0-legacy/CameraDevice.cpp | 1 +
+ 1 file changed, 1 insertions(+)
+
+
 diff --git a/camera/device/1.0-legacy/CameraDevice.cpp b/camera/device/1.0-legacy/CameraDevice.cpp
 index f324e45..69ba2fa 100644
 --- a/camera/device/1.0-legacy/CameraDevice.cpp
@@ -20,3 +24,5 @@ index f324e45..69ba2fa 100644
  #include <hardware/camera.h>
  #include <hardware/gralloc1.h>
  #include <hidlmemory/mapping.h>
+-- 
+2.25.1
