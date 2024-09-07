@@ -14,7 +14,7 @@ git am --signoff < ~/patches-lineage-20.0/packages_modules_Connectivity/0001-Sup
 git am --signoff < ~/patches-lineage-20.0/packages_modules_Connectivity/0002-Bring-back-traffic-indicators-for-legacy-devices.patch
 cd ../
 echo "Applying patches to packages/modules/Bluetooth"
-cd packages/modules/Bluetooth
+cd Bluetooth
 git am ~/patches-lineage-20.0/packages_modules_Bluetooth/packages_modules_Bluetooth-july-2024.patch
 cd ../
 cd NetworkStack
@@ -64,6 +64,7 @@ cd system/core
 echo "Applying patches to system/core"
 git am --signoff < ~/patches-lineage-20.0/system_core/0001-Add-no-BPF-usecase-support.patch
 git am --signoff < ~/patches-lineage-20.0/system_core/0002-Revert-libprocessgroup-switch-freezer-to-cgroup-v2.patch
+git am --signoff < ~/patches-lineage-20.0/system_core/camera-halv1-fix.patch
 cd ../../
 cd hardware/lineage/interfaces
 echo "Applying patches to hardware/lineage/interfaces"
@@ -72,10 +73,16 @@ git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0002-wifi-
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0003-wifi-hidl_struct_util.cpp-convertLegacyWifiChannelWi.patch
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0004-wifi-wifi.h-fix-build-undef-NAN.patch
 git am --signoff < ~/patches-lineage-20.0/hardware_lineage_interfaces/0005-camera-fix-build-for-s.patch
+git add .
+git commit -m "camera: Fix build for S"
 cd ../../../
 cd vendor/lineage
 echo "Applying patches to vendor/lineage"
-git am --signoff < ~/patches-lineage-20.0/vendor_lineage/0001-Add-back-TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE.patch
-git am --signoff < ~/patches-lineage-20.0/vendor_lineage/0002-Add-back-TARGET_HAS_MEMFD_BACKPORT.patch
+git apply ~/patches-lineage-20.0/vendor_lineage/0001-camera-halv1.patch
+git add .
+git commit -m "legacy hal v1 patches"
+git apply  ~/patches-lineage-20.0/vendor_lineage/0001-more-qcom.patch
+git add .
+git commit -m "more qcom and camera patches"
 cd ../../
 
